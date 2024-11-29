@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Genre } from './models/genre';
+import { State } from './models/state';
 import { User } from './models/user';
+import { BrazilianStatesService } from './services/brazilian-states.service';
 import { GenresService } from './services/genres.service';
 import { UsersService } from './services/users.service';
 
@@ -11,11 +14,13 @@ import { UsersService } from './services/users.service';
 export class AppComponent implements OnInit {
 
   usersList: Array<User> = []
-  genresList: Array<{}> = []
+  genresList: Array<Genre> = []
+  statesList: Array<State> = []
 
   constructor(
     private readonly _userService: UsersService,
     private readonly _genresService: GenresService,
+    private readonly _statesService: BrazilianStatesService,
 
   ) {
 
@@ -23,6 +28,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.getUsers();
     this.getGenres();
+    this.getStates();
+  }
+  private getStates() {
+    this._statesService.getStates().subscribe((statesListResponse) => {
+      this.statesList = statesListResponse;
+    })
   }
   private getGenres() {
     this._genresService.getGenres().subscribe((genresListResponse) => {
