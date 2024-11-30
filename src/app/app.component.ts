@@ -16,6 +16,10 @@ import { StatesListResponse } from './types/states-list-response';
 })
 export class AppComponent implements OnInit {
 
+  userSelected: User = {} as User;
+  userSelectedIndex: number | undefined;
+
+
   usersList: UsersListResponse = []
   genresList: GenresListResponse = []
   statesList: StatesListResponse = []
@@ -48,6 +52,14 @@ export class AppComponent implements OnInit {
     this._userService.getUsers().subscribe((usersListResponse) => {
       this.usersList = usersListResponse
     })
+  }
+  onUserSelected(userIndex: number) {
+    const userFound = this.usersList[userIndex]
+    if (userFound) {
+      this.userSelected = structuredClone(userFound)
+      this.userSelectedIndex = userIndex
+    }
+
   }
 }
 

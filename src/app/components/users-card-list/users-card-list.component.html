@@ -1,6 +1,6 @@
 <div class="users">
     @for (user of usersList; track $index) {
-    <mat-card class="users__card">
+    <mat-card class="users__card" (click)="onUserSelected($index)">
         <mat-card-header>
             <mat-card-title>{{user.name}}</mat-card-title>
             <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
