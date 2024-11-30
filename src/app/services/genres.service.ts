@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Genre } from '../models/genre';
+import { GenresListResponse } from '../types/genres-list-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GenresService {
 
-  private readonly genresList: Array<Genre> = [
+  private readonly genresList: GenresListResponse = [
     { id: 1, description: 'Rock' },
     { id: 2, description: 'Pop' },
     { id: 3, description: 'Jazz' },
@@ -30,7 +31,7 @@ export class GenresService {
     { id: 20, description: 'Pop Rock' },
   ]
 
-  getGenres(): Observable<Array<Genre>> {
+  getGenres(): Observable<GenresListResponse> {
     return new Observable((observer) => {
       setTimeout(() => {
         observer.next(this.genresList)

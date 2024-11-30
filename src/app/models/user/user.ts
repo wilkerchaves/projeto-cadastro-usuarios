@@ -1,5 +1,6 @@
 import { Music } from "./music"
 
+
 export interface User {
     name: string
     username: string
