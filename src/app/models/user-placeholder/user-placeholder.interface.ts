@@ -1,4 +1,5 @@
-import { Address } from "cluster"
+
+import { Address } from "./address.interface"
 import { Company } from "./company.interface"
 
 export interface UserPlaceholder {
