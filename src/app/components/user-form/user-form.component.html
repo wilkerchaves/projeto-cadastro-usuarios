@@ -76,6 +76,35 @@
                     </mat-error>
                 </mat-form-field>
             </div>
+            <div class="user-form__row">
+                <mat-form-field class="user-form__item user-form__item-50" [appearance]="'outline'">
+                    <mat-label>Data de nascimento</mat-label>
+                    <input
+                        id="birthDate"
+                        matInput
+                        [matDatepicker]="picker"
+                        name="birthDate"
+                        ngModel
+                        [min]="minDate"
+                        [max]="maxDate"
+                        #birthDateControl="ngModel"
+                        required
+                        readonly
+                    />
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker>
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancelar</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>Confirmar</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                    <mat-hint>dd/mm/aaaa</mat-hint>
+                    <mat-error *ngIf="passwordConfirmationControl.hasError('required')">
+                        A <strong>data de nascimento</strong> é obrigatória.
+                    </mat-error>
+                    
+                </mat-form-field>
+            </div>
         </form>
     </mat-card-content>
 </mat-card>
