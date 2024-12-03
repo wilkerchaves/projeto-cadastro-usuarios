@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content>
-        <form>
+        <form class="user-form" #userForm="ngForm" appPasswordConfirmationValidation>
             <div class="user-form__row">
                 <mat-form-field class="user-form__item user-form__item-100" [appearance]="'outline'">
                     <mat-label>Nome</mat-label>
@@ -40,7 +40,7 @@
             </div>
             <div class="user-form__row">
                 <mat-form-field class="user-form__item user-form__item-50" [appearance]="'outline'">
-                    <mat-label>Email</mat-label>
+                    <mat-label>Senha</mat-label>
                     <input type="password" name="password" id="password" #passwordControl="ngModel" matInput required
                         (ngModelChange)="onPasswordChange($event)" [(ngModel)]="userSelected.password"
                         appPasswordStrengthValidator>
@@ -56,6 +56,24 @@
                             'medium-password': passwordStrengthValue === 60,
                             'strong-password': passwordStrengthValue > 60
                         }"></mat-progress-bar>
+                </mat-form-field>
+                <mat-form-field class="user-form__item user-form__item-50" [appearance]="'outline'">
+                    <mat-label>Confirmação de senha</mat-label>
+                    <input
+                        matInput
+                        autocomplete="one-time-code"
+                        type="text"
+                        name="passwordConfirmation"
+                        ngModel
+                        #passwordConfirmationControl="ngModel"
+                        required
+                    />
+                    <mat-error *ngIf="passwordConfirmationControl.hasError('required')">
+                        A <strong>Confirmação de Senha</strong> é obrigatória.
+                    </mat-error>
+                    <mat-error *ngIf="passwordConfirmationControl.hasError('invalidPasswordConfirmation') && !passwordConfirmationControl.hasError('required')">
+                        As <strong>senhas</strong> não são compatíveis.
+                    </mat-error>
                 </mat-form-field>
             </div>
         </form>
