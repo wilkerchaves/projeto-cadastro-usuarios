@@ -59,19 +59,13 @@
                 </mat-form-field>
                 <mat-form-field class="user-form__item user-form__item-50" [appearance]="'outline'">
                     <mat-label>Confirmação de senha</mat-label>
-                    <input
-                        matInput
-                        autocomplete="one-time-code"
-                        type="text"
-                        name="passwordConfirmation"
-                        ngModel
-                        #passwordConfirmationControl="ngModel"
-                        required
-                    />
+                    <input matInput autocomplete="one-time-code" type="text" name="passwordConfirmation" ngModel
+                        #passwordConfirmationControl="ngModel" required />
                     <mat-error *ngIf="passwordConfirmationControl.hasError('required')">
                         A <strong>Confirmação de Senha</strong> é obrigatória.
                     </mat-error>
-                    <mat-error *ngIf="passwordConfirmationControl.hasError('invalidPasswordConfirmation') && !passwordConfirmationControl.hasError('required')">
+                    <mat-error
+                        *ngIf="passwordConfirmationControl.hasError('invalidPasswordConfirmation') && !passwordConfirmationControl.hasError('required')">
                         As <strong>senhas</strong> não são compatíveis.
                     </mat-error>
                 </mat-form-field>
@@ -79,19 +73,9 @@
             <div class="user-form__row">
                 <mat-form-field class="user-form__item user-form__item-50" [appearance]="'outline'">
                     <mat-label>Data de nascimento</mat-label>
-                    <input
-                        id="birthDate"
-                        matInput
-                        [matDatepicker]="picker"
-                        name="birthDate"
-                        [ngModel]="dateValue"
-                        [min]="minDate"
-                        [max]="maxDate"
-                        (dateChange)="onDateChange($event)"
-                        #birthDateControl="ngModel"
-                        required
-                        readonly
-                    />
+                    <input id="birthDate" matInput [matDatepicker]="picker" name="birthDate" [ngModel]="dateValue"
+                        [min]="minDate" [max]="maxDate" (dateChange)="onDateChange($event)" #birthDateControl="ngModel"
+                        required readonly />
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker>
                         <mat-datepicker-actions>
@@ -103,7 +87,16 @@
                     <mat-error *ngIf="passwordConfirmationControl.hasError('required')">
                         A <strong>data de nascimento</strong> é obrigatória.
                     </mat-error>
-                    
+
+                </mat-form-field>
+                <mat-form-field class="user-form__item user-form__item-50">
+                    <mat-label>Estados</mat-label>
+                    <mat-select name="state" [(ngModel)]="userSelected.state" required>
+                        @for (state of statesList; track $index) {
+                        <mat-option [value]="state.id">{{state.descricao}}</mat-option>
+                        }
+                    </mat-select>
+                    <mat-error>O <strong>Estado</strong> é obrigatório.</mat-error>
                 </mat-form-field>
             </div>
         </form>
