@@ -84,9 +84,10 @@
                         matInput
                         [matDatepicker]="picker"
                         name="birthDate"
-                        ngModel
+                        [ngModel]="dateValue"
                         [min]="minDate"
                         [max]="maxDate"
+                        (dateChange)="onDateChange($event)"
                         #birthDateControl="ngModel"
                         required
                         readonly

@@ -15,8 +15,6 @@ export class EmailPatternValidatorDirective implements Validator {
 
     const isValid = emailPattern.test(control.value)
 
-    console.log(control.value, isValid)
-
     return isValid ? null : { 'invalidEmailPattern': true }
   }
 
