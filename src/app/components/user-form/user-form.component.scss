@@ -18,6 +18,15 @@
     &__item-100 {
         width: 100%;
     }
+
+    &__musics {
+        width: 100%;
+        padding: 20px;
+    }
+
+    &__musics-title {
+        padding: 20px;
+    }
 }
 
 .weak-password {
@@ -25,12 +34,14 @@
         --mdc-linear-progress-active-indicator-color: #E9806E !important
     }
 }
+
 .medium-password {
     ::ng-deep &.mat-mdc-progress-bar.mat-primary {
         --mdc-linear-progress-active-indicator-color: #FDE74C !important
     }
 
 }
+
 .strong-password {
     ::ng-deep &.mat-mdc-progress-bar.mat-primary {
         --mdc-linear-progress-active-indicator-color: #78BC61 !important

@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -17,18 +20,24 @@ import { MatSelectModule } from '@angular/material/select';
         MatProgressBarModule,
         MatInputModule,
         MatNativeDateModule,
+        MatDividerModule,
         MatDatepickerModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTableModule,
+        MatAutocompleteModule
     ],
     exports: [
         MatCardModule,
+        MatDividerModule,
         MatButtonModule,
         MatFormFieldModule,
         MatProgressBarModule,
         MatInputModule,
         MatNativeDateModule,
         MatDatepickerModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTableModule,
+        MatAutocompleteModule
     ],
     declarations: [],
     providers: [],
