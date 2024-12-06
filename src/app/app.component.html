@@ -1,4 +1,5 @@
 <app-users-card-list [usersList]="usersList" (onUserSelected)="onUserSelected($event)">
 </app-users-card-list>
 <app-user-form 
+(onFormSubmit)="onFormSubmit()"
 [genresList]="genresList" [statesList]="statesList" [userSelected]="userSelected"></app-user-form>

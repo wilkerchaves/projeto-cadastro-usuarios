@@ -1,12 +1,13 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { Genre } from '../../models/genre';
 import { User } from '../../models/user/user';
 import { GenresListResponse } from '../../types/genres-list-response';
 import { StatesListResponse } from '../../types/states-list-response';
+import { convertDatepickerToBirthDate } from '../../utils/convert-datepicker-to-birth-date';
 import { convertPtBrDateToDatepicker } from '../../utils/convert-ptbr-date-to-datepicker';
 import { getPasswordStrengthValue } from '../../utils/get-password-strength-value';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { convertDatepickerToBirthDate } from '../../utils/convert-datepicker-to-birth-date';
-import { Genre } from '../../models/genre';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -14,6 +15,7 @@ import { Genre } from '../../models/genre';
   styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent implements OnInit, OnChanges {
+
 
 
   @Input()
@@ -25,6 +27,9 @@ export class UserFormComponent implements OnInit, OnChanges {
   @Input()
   statesList: StatesListResponse = []
 
+  @Output('onFormSubmit')
+  onFormSubmitEmitter: EventEmitter<void> = new EventEmitter()
+
   passwordStrengthValue: number = 0;
   minDate: Date | null = null;
   maxDate: Date | null = null;
@@ -32,6 +37,9 @@ export class UserFormComponent implements OnInit, OnChanges {
   displayedColumns: Array<string> = ['title', 'band', 'genre', 'favorite'];
   filteredGenreList: Array<Genre> = []
 
+  constructor(private readonly _el: ElementRef) {
+
+  }
 
   ngOnInit() {
     this.setMinAndMaxDate();
@@ -63,6 +71,10 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   }
 
+  alreadyCheckedBox(): boolean {
+    return this.userSelected.musics.some(music => music.isFavorite)
+  }
+
   onPasswordChange(password: string) {
     this.passwordStrengthValue = getPasswordStrengthValue(password)
   }
@@ -71,6 +83,27 @@ export class UserFormComponent implements OnInit, OnChanges {
     if (event.value) {
       console.log(convertDatepickerToBirthDate(event.value))
       this.userSelected.birthDate = convertDatepickerToBirthDate(event.value)
+    }
+  }
+
+  onFormSubmit(form: NgForm) {
+
+    if (form.invalid) {
+      this.focusOnInvalidControl(form);
+
+      return;
+    }
+    this.onFormSubmitEmitter.emit()
+  }
+
+
+  private focusOnInvalidControl(form: NgForm) {
+    for (let control of Object.keys(form.controls)) {
+      if (form.controls[control].invalid) {
+        const invalidControl: HTMLElement = this._el.nativeElement.querySelector(`[name=${control}]`)
+        invalidControl.focus()
+        break;
+      }
     }
   }
 

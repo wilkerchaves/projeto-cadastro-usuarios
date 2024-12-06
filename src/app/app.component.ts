@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Genre } from './models/genre';
-import { State } from './models/state';
 import { User } from './models/user/user';
 import { BrazilianStatesService } from './services/brazilian-states.service';
 import { GenresService } from './services/genres.service';
 import { UsersService } from './services/users.service';
-import { UsersListResponse } from './types/users-list-response';
 import { GenresListResponse } from './types/genres-list-response';
 import { StatesListResponse } from './types/states-list-response';
+import { UsersListResponse } from './types/users-list-response';
+import { MatDialog } from '@angular/material/dialog';
+import { UserChangesDialogComponent } from './components/user-changes-dialog/user-changes-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     private readonly _userService: UsersService,
     private readonly _genresService: GenresService,
     private readonly _statesService: BrazilianStatesService,
+    private readonly _matDialog: MatDialog
 
   ) {
 
@@ -37,6 +38,23 @@ export class AppComponent implements OnInit {
     this.getGenres();
     this.getStates();
   }
+  onFormSubmit() {
+    if(!this.userSelectedIndex) return;
+    
+    const originalUser = this.usersList[this.userSelectedIndex];
+
+    this.openChangesDialog(originalUser, this.userSelected);
+  }
+  private openChangesDialog(originalUser: User, userSelected: User) {
+    this._matDialog.open(UserChangesDialogComponent, {
+      data: {
+        originalUser,
+        userSelected
+      },
+      minWidth: '70%'
+    })
+  }
+
   private getStates() {
     this._statesService.getStates().subscribe((statesListResponse) => {
       this.statesList = statesListResponse;

@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { MatTableModule } from '@angular/material/table';
         MatDatepickerModule,
         MatSelectModule,
         MatTableModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatCheckboxModule,
+        MatDialogModule
     ],
     exports: [
         MatCardModule,
@@ -37,7 +41,9 @@ import { MatTableModule } from '@angular/material/table';
         MatDatepickerModule,
         MatSelectModule,
         MatTableModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatCheckboxModule,
+        MatDialogModule
     ],
     declarations: [],
     providers: [],

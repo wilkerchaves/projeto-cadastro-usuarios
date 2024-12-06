@@ -6,6 +6,7 @@ import { DirectivesModule } from '../directives/directives.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { UsersCardListComponent } from './users-card-list/users-card-list.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { UserChangesDialogComponent } from './user-changes-dialog/user-changes-dialog.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { UserFormComponent } from './user-form/user-form.component';
   ],
   declarations: [
     UsersCardListComponent,
-    UserFormComponent
+    UserFormComponent,
+    UserChangesDialogComponent
   ],
   providers: [],
 })

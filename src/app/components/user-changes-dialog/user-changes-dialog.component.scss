@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+
+.infos {
+    &__row {
+        width: 100%;
+        display: flex;
+    }
+
+    &__item {
+        width: 50%;
+        padding: 10px;
+        background-color: #d9d9d9;
+    }
+
+    &__header {
+        background-color: black;
+        color: whitesmoke;
+        text-align: center;
+
+        &--border-top-left {
+            border-top-left-radius: 10px;
+        }
+
+        &--border-top-right {
+            border-top-right-radius: 10px;
+        }
+    }
+}
