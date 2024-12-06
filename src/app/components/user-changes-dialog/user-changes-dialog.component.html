@@ -35,9 +35,9 @@
             <div class="infos__item"><strong>Data de nascimento:</strong>{{data.userSelected.birthDate}}</div>
         </div>
         <div class="infos__row">
-            <div class="infos__item"><strong>Estado:</strong> {{data.originalUser.state}}</div>
+            <div class="infos__item"><strong>Estado:</strong> {{data.originalUser.state | stateDescription}}</div>
             <mat-divider [vertical]="true" style="width: 3px;"></mat-divider>
-            <div class="infos__item"><strong>Estado:</strong>{{data.userSelected.state}}</div>
+            <div class="infos__item"><strong>Estado:</strong>{{data.userSelected.state | stateDescription}}</div>
         </div>
         <ng-container *ngFor="let music of data.originalUser.musics; let i = index">
             <div class="infos__row">
@@ -53,16 +53,18 @@
                         Banda:</strong>{{data.userSelected.musics[i].band}}</div>
             </div>
             <div class="infos__row">
-                <div class="infos__item"><strong>Musica {{i + 1}} - Genero:</strong> {{music.genre}}</div>
+                <div class="infos__item"><strong>Musica {{i + 1}} - Genero:</strong> {{music.genre | genreDescription}}
+                </div>
                 <mat-divider [vertical]="true" style="width: 3px;"></mat-divider>
                 <div class="infos__item"><strong>Musica {{i + 1}} -
-                        Genero:</strong>{{data.userSelected.musics[i].genre}}</div>
+                        Genero:</strong>{{data.userSelected.musics[i].genre | genreDescription}}</div>
             </div>
             <div class="infos__row">
-                <div class="infos__item"><strong>Musica {{i + 1}} - Favorita:</strong> {{music.isFavorite}}</div>
+                <div class="infos__item"><strong>Musica {{i + 1}} - Favorita:</strong> {{music.isFavorite |
+                    isFavoriteDescription}}</div>
                 <mat-divider [vertical]="true" style="width: 3px;"></mat-divider>
-                <div class="infos__item"><strong>Musica {{i + 1}} -
-                        Favorita:</strong>{{data.userSelected.musics[i].isFavorite}}</div>
+                <div class="infos__item"><strong>Musica {{i + 1}} - Favorita:</strong>
+                    {{data.userSelected.musics[i].isFavorite | isFavoriteDescription}}</div>
             </div>
         </ng-container>
 
@@ -70,5 +72,5 @@
 </mat-dialog-content>
 <mat-dialog-actions [align]="'end'">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-raised-button color="primary" mat-dialog-close>Salvar</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">Salvar</button>
 </mat-dialog-actions>

@@ -39,20 +39,32 @@ export class AppComponent implements OnInit {
     this.getStates();
   }
   onFormSubmit() {
-    if(!this.userSelectedIndex) return;
-    
+    if (!this.userSelectedIndex) return;
+
     const originalUser = this.usersList[this.userSelectedIndex];
 
-    this.openChangesDialog(originalUser, this.userSelected);
+    this.openChangesDialog(originalUser, this.userSelected, this.userSelectedIndex);
   }
-  private openChangesDialog(originalUser: User, userSelected: User) {
-    this._matDialog.open(UserChangesDialogComponent, {
+  private openChangesDialog(originalUser: User, userSelected: User, userSelectedIndex: number) {
+    const dialogRef = this._matDialog.open(UserChangesDialogComponent, {
       data: {
         originalUser,
         userSelected
       },
       minWidth: '70%'
     })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.confirmUserChanges(userSelected, userSelectedIndex);
+      }
+    })
+  }
+  confirmUserChanges(userSelected: User, userSelectedIndex: number) {
+    this.usersList[userSelectedIndex] = structuredClone(userSelected)
+    console.group("Lista de usuarios atualizada")
+    console.log("Lista de usuarios atual: " + this.usersList)
+    console.groupEnd()
   }
 
   private getStates() {

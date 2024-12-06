@@ -18,7 +18,6 @@ export class PasswordConfirmationValidationDirective implements Validator {
       const passwordConfirmationControl = control.get('passwordConfirmation');
 
       if (control.value.password !== control.value.passwordConfirmation) {
-        console.log(control.value.password, control.value.passwordConfirmation)
         passwordConfirmationControl?.setErrors({
           'invalidPasswordConfirmation': true
         })
