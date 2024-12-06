@@ -1,5 +1,5 @@
 <app-users-card-list [usersList]="usersList" (onUserSelected)="onUserSelected($event)">
 </app-users-card-list>
-<app-user-form 
+<app-user-form *ngIf="userSelectedIndex !== undefined"
 (onFormSubmit)="onFormSubmit()"
 [genresList]="genresList" [statesList]="statesList" [userSelected]="userSelected"></app-user-form>
